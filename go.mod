@@ -2,6 +2,8 @@ module github.com/pschlump-at-hsr/gornir
 
 go 1.12
 
+retract v0.1.0
+
 require (
 	github.com/google/go-cmp v0.3.0
 	github.com/google/uuid v1.1.1
