@@ -1,4 +1,4 @@
-PROJECT="github.com/nornir-automation/gornir"
+PROJECT="github.com/pschlump-at-hsr/gornir"
 GOLANGCI_LINT_VER="v1.17"
 .DEFAULT_GOAL := help
 

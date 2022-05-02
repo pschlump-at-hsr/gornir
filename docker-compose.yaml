@@ -19,7 +19,7 @@ services:
             - GO111MODULE=on
             - GOPROXY=https://proxy.golang.org
         volumes:
-            - .:/go/src/github.com/nornir-automation/gornir
+            - .:/go/src/github.com/pschlump-at-hsr/gornir
         ports:
             - "6060:6060"
         networks:
