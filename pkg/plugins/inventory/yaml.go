@@ -3,7 +3,7 @@ package inventory
 import (
 	"io/ioutil"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"

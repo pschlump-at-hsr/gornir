@@ -2,7 +2,7 @@
 package filter
 
 import (
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 )
 
 // WithHostname returns hosts that have a given hostname

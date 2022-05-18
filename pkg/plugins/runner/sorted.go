@@ -6,7 +6,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 )
 
 // SortedRunner will sort the hosts alphabetically and execute the task over

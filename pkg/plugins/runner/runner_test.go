@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 )
 
 type testTaskSleep struct {

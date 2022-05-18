@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
-	"github.com/nornir-automation/gornir/pkg/plugins/runner"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/runner"
 )
 
 // TestParallel is going to check that the func runs on all hosts

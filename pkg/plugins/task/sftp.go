@@ -8,8 +8,8 @@ import (
 
 	"github.com/pkg/sftp"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
-	"github.com/nornir-automation/gornir/pkg/plugins/connection"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/connection"
 
 	"github.com/pkg/errors"
 )

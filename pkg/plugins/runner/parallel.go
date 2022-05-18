@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 )
 
 // ParallelRunner will run each task over the hosts in parallel using a goroutines per Host

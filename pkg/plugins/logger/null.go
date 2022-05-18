@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 )
 
 // Null is a logger that doesn't do anything. Implements gornir.Logger interface

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 
 	"github.com/pkg/errors"
 	"golang.org/x/crypto/ssh"

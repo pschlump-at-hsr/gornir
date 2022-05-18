@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
 
 	"github.com/google/go-cmp/cmp"
 )
