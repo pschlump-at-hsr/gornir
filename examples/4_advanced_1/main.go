@@ -5,13 +5,13 @@ import (
 	"context"
 	"os"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
-	"github.com/nornir-automation/gornir/pkg/plugins/connection"
-	"github.com/nornir-automation/gornir/pkg/plugins/inventory"
-	"github.com/nornir-automation/gornir/pkg/plugins/logger"
-	"github.com/nornir-automation/gornir/pkg/plugins/output"
-	"github.com/nornir-automation/gornir/pkg/plugins/runner"
-	"github.com/nornir-automation/gornir/pkg/plugins/task"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/connection"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/inventory"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/logger"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/output"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/runner"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/task"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	log := logger.NewLogrus(false)
 
 	// Load the inventory using the FromYAMLFile plugin
-	file := "/go/src/github.com/nornir-automation/gornir/examples/hosts.yaml"
+	file := "/go/src/github.com/pschlump-at-hsr/gornir/examples/hosts.yaml"
 	plugin := inventory.FromYAML{HostsFile: file}
 	inv, err := plugin.Create()
 	if err != nil {

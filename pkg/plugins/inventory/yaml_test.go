@@ -3,7 +3,7 @@ package inventory_test
 import (
 	"testing"
 
-	"github.com/nornir-automation/gornir/pkg/plugins/inventory"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/inventory"
 )
 
 var (

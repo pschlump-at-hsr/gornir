@@ -7,13 +7,13 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
-	"github.com/nornir-automation/gornir/pkg/plugins/connection"
-	"github.com/nornir-automation/gornir/pkg/plugins/inventory"
-	"github.com/nornir-automation/gornir/pkg/plugins/logger"
-	"github.com/nornir-automation/gornir/pkg/plugins/output"
-	"github.com/nornir-automation/gornir/pkg/plugins/runner"
-	"github.com/nornir-automation/gornir/pkg/plugins/task"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/connection"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/inventory"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/logger"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/output"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/runner"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/task"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -35,7 +35,7 @@ func getPubKeySigner(host *gornir.Host, sshPrivKeyFname string, logger gornir.Lo
 
 func GetSSHConfig(host *gornir.Host, logger gornir.Logger) (*ssh.ClientConfig, error) {
 	var authMethods = []ssh.AuthMethod{ssh.Password(host.Password)}
-	sshPrivKeyFname := "/go/src/github.com/nornir-automation/gornir/examples/6_custom_ssh_config/id_rsa"
+	sshPrivKeyFname := "/go/src/github.com/pschlump-at-hsr/gornir/examples/6_custom_ssh_config/id_rsa"
 	signer, err := getPubKeySigner(host, sshPrivKeyFname, logger)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func main() {
 	log := logger.NewLogrus(false)
 
 	// Load the inventory using the FromYAMLFile plugin
-	file := "/go/src/github.com/nornir-automation/gornir/examples/hosts.yaml"
+	file := "/go/src/github.com/pschlump-at-hsr/gornir/examples/hosts.yaml"
 	plugin := inventory.FromYAML{HostsFile: file}
 	inv, err := plugin.Create()
 	if err != nil {

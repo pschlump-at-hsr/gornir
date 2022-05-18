@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nornir-automation/gornir/pkg/gornir"
-	"github.com/nornir-automation/gornir/pkg/plugins/inventory"
-	"github.com/nornir-automation/gornir/pkg/plugins/logger"
-	"github.com/nornir-automation/gornir/pkg/plugins/runner"
+	"github.com/pschlump-at-hsr/gornir/pkg/gornir"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/inventory"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/logger"
+	"github.com/pschlump-at-hsr/gornir/pkg/plugins/runner"
 )
 
 var (

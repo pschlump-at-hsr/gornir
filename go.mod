@@ -7,7 +7,7 @@ retract v0.1.0
 require (
 	github.com/google/go-cmp v0.3.0
 	github.com/google/uuid v1.1.1
-	github.com/nornir-automation/gornir v0.0.0-20210402120253-33338dd06826
+	github.com/kr/fs v0.1.0 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
 	github.com/sirupsen/logrus v1.4.2
