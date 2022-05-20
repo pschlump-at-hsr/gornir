@@ -42,8 +42,8 @@ func (t *RemoteChainedCommands) Run(ctx context.Context, logger gornir.Logger, h
 	if err != nil {
 		return RemoteChainedCommandsResults{}, errors.Wrap(err, "failed to retrieve connection")
 	}
-	sshConn := conn.(*connection.SSH)
 
+	sshConn := conn.(*connection.SSH)
 	session, err := sshConn.Client.NewSession()
 	if err != nil {
 		return RemoteChainedCommandsResults{}, errors.Wrap(err, "failed to create session")
@@ -68,37 +68,57 @@ func (t *RemoteChainedCommands) Run(ctx context.Context, logger gornir.Logger, h
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	scannerOut := bufio.NewScanner(stdout)
-	scannerErr := bufio.NewScanner(stderr)
 
-	if err := session.Shell(); err != nil {
-		return RemoteChainedCommandsResults{}, errors.Wrap(err, "failed to execute command")
-	}
+	wr := make(chan []byte, 10)
+
+	go func() {
+		for {
+			select {
+			case d := <-wr:
+				_, err := stdin.Write(d)
+				if err != nil {
+					fmt.Println(err.Error())
+				}
+			}
+		}
+	}()
+
+	go func() {
+		scanner := bufio.NewScanner(stdout)
+		for {
+			if tkn := scanner.Scan(); tkn {
+				rcv := scanner.Bytes()
+
+				raw := make([]byte, len(rcv))
+				copy(raw, rcv)
+
+				RemoteChainedCommandsResults{Stdin: nil, Stdout: scanner.Bytes(), Stderr: nil}.String()
+			} else {
+				if scanner.Err() != nil {
+					RemoteChainedCommandsResults{Stdin: nil, Stdout: scanner.Bytes(), Stderr: []byte(scanner.Err().Error())}.String()
+				} else {
+					fmt.Println("io.EOF")
+				}
+				return
+			}
+		}
+	}()
+
+	go func() {
+		scanner := bufio.NewScanner(stderr)
+
+		for scanner.Scan() {
+			RemoteChainedCommandsResults{Stdin: nil, Stdout: nil, Stderr: scanner.Bytes()}.String()
+		}
+	}()
 
 	for _, command := range t.Commands {
 		_, err := stdin.Write([]byte(command))
 		if err != nil {
 			return RemoteChainedCommandsResults{}, errors.Wrap(err, "failed to write to stdin")
 		}
-
-		for {
-			tknOut := scannerOut.Scan()
-			tknErr := scannerErr.Scan()
-			if tknOut || tknErr {
-
-				RemoteChainedCommandsResults{Stdin: []byte(command), Stdout: scannerOut.Bytes(), Stderr: scannerErr.Bytes()}.String()
-
-			} else {
-				if scannerOut.Err() != nil {
-					return RemoteChainedCommandsResults{}, errors.Wrap(scannerOut.Err(), "failed to retrieve connection")
-				} else {
-					time.Sleep(time.Millisecond * 100)
-				}
-
-			}
-		}
-
 	}
-
+	session.Shell()
+	time.Sleep(time.Second * 1)
 	return RemoteChainedCommandsResults{}, nil
 }
