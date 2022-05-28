@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"golang.org/x/crypto/ssh"
 	"io"
 	"time"
 
@@ -47,6 +48,18 @@ func (t *RemoteChainedCommands) Run(ctx context.Context, logger gornir.Logger, h
 	session, err := sshConn.Client.NewSession()
 	if err != nil {
 		return RemoteChainedCommandsResults{}, errors.Wrap(err, "failed to create session")
+	}
+
+	defer session.Close()
+
+	modes := ssh.TerminalModes{
+		ssh.ECHO:          0,     // disable echoing
+		ssh.TTY_OP_ISPEED: 14400, // input speed = 14.4kbaud
+		ssh.TTY_OP_OSPEED: 14400, // output speed = 14.4kbaud
+	}
+	// Request pseudo terminal
+	if err := session.RequestPty("xterm", 40, 80, modes); err != nil {
+		fmt.Println(err.Error())
 	}
 
 	var (
